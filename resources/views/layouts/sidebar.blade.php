@@ -25,7 +25,7 @@
   <div class="sidebar-heading">
     Menu
   </div>
-
+  @if(Auth::user()->level_access == 1)
   <li class="nav-item {{ request()->routeIs('employee.index') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('employee.index') }}">
       <i class="fas fa-fw fa-user-circle"></i>
@@ -39,6 +39,7 @@
       <span>Pengguna 用户</span>
     </a>
   </li>
+  @endif
 
   <li class="nav-item {{ request()->routeIs('evaluation.index') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('evaluation.index') }}">
@@ -49,8 +50,8 @@
 
   <!-- Divider -->
   <hr class="sidebar-divider">
-
   @if(Auth::user()->level_access == 1)
+
   <!-- Heading -->
   <div class="sidebar-heading">
     Pengaturan 设置
@@ -85,10 +86,10 @@
       </div>
     </div>
   </li>
-  @endif
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
+  @endif
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">

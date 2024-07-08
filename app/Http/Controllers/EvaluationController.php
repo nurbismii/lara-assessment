@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Assessment;
 use App\Models\Employee;
 use App\Models\Evaluation;
+use App\Models\EvaluationHistory;
 use App\Models\Evaluator;
 use App\Models\GroupMembers;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class EvaluationController extends Controller
         $group_members_query = Evaluator::join('group', 'evaluator.id', '=', 'group.evaluator_id')
             ->join('group_member', 'group_member.group_id', '=', 'group.id')
             ->join('employee', 'employee.id', '=', 'group_member.employee_id')
+            ->leftjoin('evaluation_history', 'evaluation_history.employee_id', '=', 'employee.id')
             ->join('employee as evaluator_employee', 'evaluator_employee.employee_id', '=', 'evaluator.employee_id')
             ->select(
                 'group_member.*',
@@ -28,7 +30,8 @@ class EvaluationController extends Controller
                 'employee.name as employee_name',
                 'employee.employee_id as employee_id',
                 'employee.id as emp_id',
-                'evaluator_employee.name as evaluator_name'
+                'evaluator_employee.name as evaluator_name',
+                'evaluation_history.evaluation_date as evaluation_date'
             );
 
         if (Auth::user()->level_access == 3) {
@@ -51,11 +54,17 @@ class EvaluationController extends Controller
 
     public function store(Request $request)
     {
+        $evalution_history = EvaluationHistory::create([
+            'evaluation_date' => $request->assessment_date,
+            'employee_id' => $request->employee_id,
+        ]);
+
         foreach ($request->assessment as $assessment_id => $perform_id) {
             Evaluation::create([
                 'perform_achieve_id' => $perform_id,
                 'group_id' => $request->group_id,
                 'employee_id' => $request->employee_id,
+                'evaluation_history_id' => $evalution_history->id,
                 'assessment_date' => $request->assessment_date
             ]);
         }

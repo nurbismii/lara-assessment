@@ -26,6 +26,7 @@
                   <th>NIK</th>
                   <th>Nama</th>
                   <th>Penilai</th>
+                  <th>Status {{ date('F Y', strtotime(now())) }}</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -35,9 +36,16 @@
                   <td>{{$member->employee_id}}</td>
                   <td>{{$member->employee_name}}</td>
                   <td>{{$member->evaluator_name}}</td>
+                  <td class="text-center">
+                    @if($member->evaluation_date != null)
+                    &radic;
+                    @else
+                    -
+                    @endif
+                  </td>
                   <td>
-                    <a href="{{ route('evaluation.show', $member->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Penilaian</a>
-                    <a href="{{ route('evaluation.detail', $member->emp_id) }}" type="button" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">Detail</a>
+                    <a href="{{ route('evaluation.show', $member->id) }}" class="btn btn-sm btn-primary shadow-sm">Penilaian</a>
+                    <a href="{{ route('evaluation.detail', $member->emp_id) }}" type="button" class="btn btn-sm btn-info shadow-sm">Detail</a>
                   </td>
                 </tr>
                 @endforeach
