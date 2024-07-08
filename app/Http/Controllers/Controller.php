@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\EvaluationHistory;
 use App\Models\Evaluator;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -35,5 +36,10 @@ class Controller extends BaseController
             $query->where('name', 'like', '%' . $request->q . '%');
         }])->limit(25)->get();
         return response()->json($users, 200);
+    }
+
+    public function alerts()
+    {
+        return EvaluationHistory::with('employee')->orderBy('id', 'ASC')->limit(5)->get();
     }
 }

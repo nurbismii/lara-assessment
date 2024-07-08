@@ -11,4 +11,9 @@ class EvaluationHistory extends Model
 
     protected $table = 'evaluation_history';
     protected $guarded = [];
+
+    public function employee()
+    {
+        return $this->hasOne(Employee::class, 'id', 'employee_id');
+    }
 }

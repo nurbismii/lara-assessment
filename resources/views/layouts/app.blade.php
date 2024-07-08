@@ -21,7 +21,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        @include('layouts.topbar')
+        @include('layouts.topbar', ['alerts' => \App\Http\Controllers\Controller::alerts()])
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
