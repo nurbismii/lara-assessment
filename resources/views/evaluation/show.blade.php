@@ -73,8 +73,8 @@
 
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Penilaian</h1>
-    <a href="{{route('evaluation.index')}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali</a>
+    <h1 class="h3 mb-0 text-gray-800">Penilaian 评估</h1>
+    <a href="{{route('evaluation.index')}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali 返回</a>
   </div>
 
   <!-- Content Row -->
@@ -88,22 +88,22 @@
           <div class="profile-info">
             <table class="table table-borderless">
               <tr>
-                <th>Nama</th>
+                <th>Nama 员工姓名</th>
                 <td>:</td>
                 <td>{{ $member->employee->name }}</td>
               </tr>
               <tr>
-                <th>NIK</th>
+                <th>NIK 新工号</th>
                 <td>:</td>
                 <td>{{ $member->employee->employee_id }}</td>
               </tr>
               <tr>
-                <th>Departemen</th>
+                <th>Departemen 大部门</th>
                 <td>:</td>
                 <td>{{ $member->employee->departement }}</td>
               </tr>
               <tr>
-                <th>Divisi</th>
+                <th>Divisi 部门</th>
                 <td>:</td>
                 <td>{{ $member->employee->divisi }}</td>
               </tr>
@@ -117,7 +117,7 @@
     <div class="col-lg-12">
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Poin Penilaian</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Poin Penilaian 评估值</h6>
         </div>
         <div class="card-body">
           <form action="{{route('evaluation.store')}}" method="post">
@@ -140,7 +140,7 @@
               @endforeach
             </div>
             @endforeach
-            <button type="submit" class="btn btn-primary btn-sm btn-lg btn-block">Simpan</button>
+            <button type="submit" class="btn btn-primary btn-sm btn-lg btn-block">Simpan 保持</button>
           </form>
         </div>
       </div>

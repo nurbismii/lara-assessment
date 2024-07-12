@@ -45,8 +45,8 @@
 
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Hasil penilaian</h1>
-    <a href="{{route('evaluation.index')}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali</a>
+    <h1 class="h3 mb-0 text-gray-800">Hasil penilaian 评级结果</h1>
+    <a href="{{route('evaluation.index')}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali 返回</a>
   </div>
 
   <!-- Content Row -->
@@ -60,22 +60,22 @@
           <div class="profile-info">
             <table class="table table-borderless">
               <tr>
-                <th>Nama</th>
+                <th>Nama 员工姓名</th>
                 <td>:</td>
                 <td>{{ $employee->name }}</td>
               </tr>
               <tr>
-                <th>NIK</th>
+                <th>NIK 新工号</th>
                 <td>:</td>
                 <td>{{ $employee->employee_id }}</td>
               </tr>
               <tr>
-                <th>Departemen</th>
+                <th>Departemen 大部门</th>
                 <td>:</td>
                 <td>{{ $employee->departement }}</td>
               </tr>
               <tr>
-                <th>Divisi</th>
+                <th>Divisi 部门</th>
                 <td>:</td>
                 <td>{{ $employee->divisi }}</td>
               </tr>
@@ -92,12 +92,12 @@
           <form action="" method="get">
             <div class="form-row align-items-center">
               <div class="col-md-12 mb-3">
-                <label>Pilih periode</label>
+                <label>Pilih periode 评选期</label>
                 <input class="form-control" name="assessment_date" type="month">
               </div>
               <div class="col-auto">
-                <a href="{{ route('evaluation.detail', $employee->id) }}" class="btn btn-danger">Bersihkan..</a>
-                <button type="submit" class="btn btn-primary">Cari penilaian..</button>
+                <a href="{{ route('evaluation.detail', $employee->id) }}" class="btn btn-sm btn-danger">Bersihkan 删除</a>
+                <button type="submit" class="btn btn-sm btn-primary">Cari penilaian 寻找</button>
               </div>
             </div>
           </form>
@@ -112,7 +112,7 @@
       <div class="card shadow border-primary mb-4">
         <div class="card-body py-3">
           <blockquote class="blockquote text-center">
-            <p class="mb-0">HASIL PENILAIAN {{$employee->name}}.</p>
+            <p class="mb-0">HASIL PENILAIAN 评级结果 {{$employee->name}}.</p>
             <footer>{{ $year < 2014 ? '-' : $month}} - {{ $year < 2014 ? '-' : $year }}</footer>
             <div class="text-right">
               <a data-toggle="modal" data-target="#evaluationDelete{{$employee->id}}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i></a>
@@ -142,7 +142,7 @@
     @elseif($year < '2015' ) <div class="col-lg-12">
       <div class="card shadow border-primary mb-4">
         <div class="card-body py-3 text-center">
-          Silahkan pilih periode terlebih
+          Silahkan pilih periode terlebih 请先选择一个时期
         </div>
       </div>
   </div>
@@ -150,7 +150,7 @@
   <div class="col-lg-12">
     <div class="card shadow border-danger mb-4">
       <div class="card-body py-3 text-center">
-        Periode yang kamu inginkan belum tersedia...
+        Periode yang kamu inginkan belum tersedia 您想要的时间尚不可用
       </div>
     </div>
   </div>

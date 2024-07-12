@@ -11,6 +11,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -40,6 +41,16 @@ class Controller extends BaseController
 
     public function alerts()
     {
-        return EvaluationHistory::with('employee')->orderBy('id', 'ASC')->limit(5)->get();
+        $evaluation_history = EvaluationHistory::with('employee')
+            ->join('group_member', 'group_member.employee_id', '=', 'evaluation_history.employee_id')
+            ->join('group', 'group.id', '=', 'group_member.group_id')
+            ->orderBy('evaluation_history.id', 'ASC')
+            ->limit(5);
+
+        if (Auth::user()->level_access == 3) {
+            $evaluation_history->where('group.evaluator_id', Auth::user()->id);
+        }
+
+        return $evaluation_history->get();
     }
 }

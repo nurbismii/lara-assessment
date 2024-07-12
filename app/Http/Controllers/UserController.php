@@ -22,19 +22,18 @@ class UserController extends Controller
     {
         if ($request->password === $request->confirm_password) {
 
-            $employee_id = Employee::select('employee_id')->where('employee_id', $request->employee_id)->first();
+            $employee = Employee::where('employee_id', $request->employee_id)->first();
 
-            if (!$employee_id) {
-                return back()->with('error', 'NIK yang kamu gunakan tidak dapat ditemukan');
+            if (!$employee) {
+                return back()->with('error', 'NIK karyawan tidak ditemukan...');
             }
-
             User::create([
-                'employee_id' => $employee_id,
-                'name' => $request->name,
+                'name' => $employee->name,
+                'employee_id' => $employee->id,
                 'email' => $request->email,
+                'level_access' => $request->level_access,
                 'password' => bcrypt($request->password),
             ]);
-
             return back()->with('success', 'Pengguna baru berhasil ditambahkan.');
         }
         return back()->with('error', 'Konfirmasi kata sandi tidak sesuai.');
@@ -42,11 +41,13 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+
         if ($request->filled('password')) {
             if ($request->password === $request->confirm_password) {
                 User::where('id', $id)->update([
                     'name' => $request->name,
                     'email' => $request->email,
+                    'level_access' => $request->level_access,
                     'password' => bcrypt($request->password),
                 ]);
                 return back()->with('success', 'Berhasil melakukan perubahan data.');

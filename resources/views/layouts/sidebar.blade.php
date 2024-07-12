@@ -29,7 +29,7 @@
   <li class="nav-item {{ request()->routeIs('employee.index') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('employee.index') }}">
       <i class="fas fa-fw fa-user-circle"></i>
-      <span>Karyawan 工人</span>
+      <span>Karyawan 员工</span>
     </a>
   </li>
 
@@ -61,13 +61,13 @@
   <li class="nav-item {{ request()->routeIs('group.index') || request()->routeIs('group-member.index') ? 'active' : '' }}">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseGrup" aria-expanded="true" aria-controls="collapseGrup">
       <i class="fas fa-fw fa-users"></i>
-      <span>Grup 团体</span>
+      <span>Grup 群</span>
     </a>
     <div id="collapseGrup" class="collapse {{ request()->routeIs('group.index') || request()->routeIs('group-member.index') ? 'show' : '' }}" aria-labelledby="headingGrup" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Custom komponen:</h6>
-        <a class="collapse-item {{ request()->routeIs('group.index') ? 'active' : '' }}" href="{{ route('group.index') }}">Grup 团体</a>
-        <a class="collapse-item {{ request()->routeIs('group-member.index') ? 'active' : '' }}" href="{{ route('group-member.index') }}">Anggota Grup 团队成员</a>
+        <a class="collapse-item {{ request()->routeIs('group.index') ? 'active' : '' }}" href="{{ route('group.index') }}">Grup 群</a>
+        <a class="collapse-item {{ request()->routeIs('group-member.index') ? 'active' : '' }}" href="{{ route('group-member.index') }}">Anggota Grup 群员</a>
       </div>
     </div>
   </li>
@@ -76,13 +76,13 @@
   <li class="nav-item {{ request()->routeIs('assessment-aspect.index') || request()->routeIs('perform-achievement.index') ? 'active' : '' }}">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePenyesuaian" aria-expanded="true" aria-controls="collapsePenyesuaian">
       <i class="fas fa-fw fa-cog"></i>
-      <span>Penyesuaian 设置</span>
+      <span>Penyesuaian 调整</span>
     </a>
     <div id="collapsePenyesuaian" class="collapse {{ request()->routeIs('assessment-aspect.index') || request()->routeIs('perform-achievement.index') ? 'show' : '' }}" aria-labelledby="headingPenyesuaian" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Custom komponen:</h6>
-        <a class="collapse-item {{ request()->routeIs('assessment-aspect.index') ? 'active' : '' }}" href="{{ route('assessment-aspect.index') }}">Aspek Penilaian 评估方面</a>
-        <a class="collapse-item {{ request()->routeIs('perform-achievement.index') ? 'active' : '' }}" href="{{ route('perform-achievement.index') }}">Pencapaian Kinerja 业绩成就</a>
+        <a class="collapse-item {{ request()->routeIs('assessment-aspect.index') ? 'active' : '' }}" href="{{ route('assessment-aspect.index') }}">Aspek Penilaian 评估内容</a>
+        <a class="collapse-item {{ request()->routeIs('perform-achievement.index') ? 'active' : '' }}" href="{{ route('perform-achievement.index') }}">Pencapaian Kinerja 绩效成</a>
       </div>
     </div>
   </li>

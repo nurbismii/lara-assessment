@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\GroupMembers;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -32,8 +33,14 @@ class GroupController extends Controller
 
     public function destroy($id)
     {
-        Group::where('id', $id)->delete();
+        $group = Group::where('id', $id)->first();
+        $group_member = GroupMembers::where('group_id', $group->id)->get();
 
+        foreach ($group_member as $member) {
+            $member->delete();
+        }
+        $group->delete();
+        
         return back()->with('success', 'Berhasil menghapus grup');
     }
 }

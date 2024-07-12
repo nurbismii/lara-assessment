@@ -41,7 +41,7 @@
           Pemberitahuan
         </h6>
         @foreach($alerts as $alert)
-        <a class="dropdown-item d-flex align-items-center" href="#">
+        <a class="dropdown-item d-flex align-items-center" href="{{ route('evaluation.detail', $alert->employee->id) }}">
           <div class="mr-3">
             <div class="icon-circle bg-primary">
               <i class="fas fa-file-alt text-white"></i>

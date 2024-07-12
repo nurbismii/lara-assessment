@@ -4,8 +4,8 @@
 
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Karyawan</h1>
-    <a href="{{ route('employee.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali</a>
+    <h1 class="h3 mb-0 text-gray-800">Karyawan 员工</h1>
+    <a href="{{ route('employee.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali 返回</a>
   </div>
 
   <!-- Content Row -->
@@ -21,23 +21,23 @@
             {{method_field('patch')}}
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="labelNik">NIK</label>
+                <label for="labelNik">NIK 新工号</label>
                 <input type="text" class="form-control" name="employee_id" value="{{$employee->employee_id}}">
               </div>
               <div class="form-group col-md-6">
-                <label for="labelNama">Nama</label>
+                <label for="labelNama">Nama 员工姓名</label>
                 <input type="text" name="name" class="form-control" value="{{$employee->name}}">
               </div>
             </div>
             <div class="form-group">
-              <label for="inputAddress">Departemen</label>
+              <label for="inputAddress">Departemen 大部门</label>
               <input type="text" class="form-control" name="departement" value="{{$employee->departement}}">
             </div>
             <div class="form-group">
-              <label for="inputAddress2">Divisi</label>
+              <label for="inputAddress2">Divisi 部门</label>
               <input type="text" class="form-control" name="divisi" value="{{$employee->divisi}}">
             </div>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary">Simpan 保持</button>
           </form>
         </div>
       </div>
