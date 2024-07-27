@@ -10,7 +10,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => 'check.access'], function () {
   Route::resource('assessment-aspect', '\App\Http\Controllers\AssessmentController');
-  Route::resource('perform-achievement', '\App\Http\Controllers\PerformachievementController');
+  Route::resource('perform-achievement', '\App\Http\Controllers\PerformAchievementController');
   Route::resource('employee', '\App\Http\Controllers\EmployeeController');
   Route::post('employee-import', [App\Http\Controllers\EmployeeController::class, 'importStore'])->name('store.excel.employee');
   Route::post('employee-import-update', [App\Http\Controllers\EmployeeController::class, 'importUpdate'])->name('update.excel.employee');
