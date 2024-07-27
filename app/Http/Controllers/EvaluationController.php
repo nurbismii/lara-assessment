@@ -98,6 +98,11 @@ class EvaluationController extends Controller
             ->whereYear('assessment_date', $request->year)
             ->delete();
 
+        EvaluationHistory::where('employee_id', $id)
+            ->whereMonth('evaluation_date', $request->month)
+            ->whereYear('evaluation_date', $request->year)
+            ->delete();
+
         return back()->with('success', 'Berhasil menghapus penilaian');
     }
 }

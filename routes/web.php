@@ -19,6 +19,9 @@ Route::group(['middleware' => 'check.access'], function () {
   Route::resource('group-member', '\App\Http\Controllers\GroupMembersController');
   Route::resource('user', '\App\Http\Controllers\UserController');
   Route::post('user/disable/{id}', [App\Http\Controllers\UserController::class, 'disableUser'])->name('user.disable');
+  Route::resource('report', '\App\Http\Controllers\ReportController');
+  Route::get('report/download/excel/{year}/{month}', [App\Http\Controllers\ReportController::class, 'downloadReportExcel'])->name('download.excel');
+  Route::get('report/download/pdf/{year}/{month}', [App\Http\Controllers\ReportController::class, 'downloadReportPdf'])->name('download.pdf');
 
   Route::group(['prefix' => 'api'], function () {
     Route::get('/employees', [App\Http\Controllers\Controller::class, 'fetchEmployee'])->name('fetch.employees');

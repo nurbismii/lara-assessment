@@ -48,6 +48,14 @@
     </a>
   </li>
 
+  @if(Auth::user()->level_access == 1)
+  <li class="nav-item ">
+    <a class="nav-link" href="{{ route('report.index') }}">
+      <i class="fas fa-fw fa-user-check"></i>
+      <span>Laporan 报告</span>
+    </a>
+  </li>
+  @endif
   <!-- Divider -->
   <hr class="sidebar-divider">
   @if(Auth::user()->level_access == 1)
