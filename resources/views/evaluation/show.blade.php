@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('contents')
+
 @push('css')
 <style>
   .custom-radio .custom-control-label::before {
@@ -69,6 +70,7 @@
   }
 </style>
 @endpush
+
 <div class="container-fluid">
 
   <!-- Page Heading -->
@@ -120,7 +122,7 @@
           <h6 class="m-0 font-weight-bold text-primary">Poin Penilaian 评估值</h6>
         </div>
         <div class="card-body">
-          <form action="{{route('evaluation.store')}}" method="post">
+          <form action="{{route('evaluation.store')}}" method="post" id="evaluationForm">
             @csrf
             <input class="form-control form-control-sm" name="group_id" type="hidden" value="{{$member->group_id}}">
             <input class="form-control form-control-sm" name="employee_id" type="hidden" value="{{$member->employee_id}}">
@@ -134,17 +136,30 @@
               @foreach($assessment->performAchievement as $perform)
               <?php $radioId = 'assessment_' . $assessment->id . '_' . $perform->id; ?>
               <div class="custom-control custom-radio mb-2">
-                <input type="radio" id="{{ $radioId }}" name="assessment[{{ $assessment->id }}]" value="{{ $perform->id }}" class="custom-control-input">
+                <input type="radio" id="{{ $radioId }}" name="assessment[{{ $assessment->id }}]" value="{{ $perform->id }}" class="custom-control-input" required>
                 <label class="custom-control-label" for="{{ $radioId }}">{{ $perform->name }}</label>
               </div>
               @endforeach
             </div>
             @endforeach
-            <button type="submit" class="btn btn-primary btn-sm btn-lg btn-block">Simpan 保持</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitButton">Simpan 保持</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+@push('disable-button')
+<script>
+  $(document).ready(function() {
+    $('#evaluationForm').on('submit', function(event) {
+      var submitButton = $('#submitButton');
+      submitButton.prop('disabled', true);
+      submitButton.text('Mengirim 发送 ...');
+    });
+  });
+</script>
+@endpush
+
 @endsection

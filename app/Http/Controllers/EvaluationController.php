@@ -46,7 +46,6 @@ class EvaluationController extends Controller
     public function show($id)
     {
         $member = GroupMembers::with('employee')->where('id', $id)->first();
-
         $assessments = Assessment::with('performAchievement')->select('*')->get();
 
         return view('evaluation.show', compact('member', 'assessments'));
@@ -54,6 +53,18 @@ class EvaluationController extends Controller
 
     public function store(Request $request)
     {
+        $month = date('m', strtotime($request->assessment_date));
+        $year = date('Y', strtotime($request->assessment_date));
+
+        $check_exist = EvaluationHistory::where('employee_id', $request->employee_id)
+            ->whereMonth('evaluation_date', $month)
+            ->whereYear('evaluation_date', $year)
+            ->first();
+
+        if ($check_exist) {
+            return back()->with('error', 'Evaluasi pada karyawan ini telah dilakukan, silahkan pilih karyawan lain.');
+        }
+
         $evalution_history = EvaluationHistory::create([
             'evaluation_date' => $request->assessment_date,
             'employee_id' => $request->employee_id,
@@ -74,11 +85,15 @@ class EvaluationController extends Controller
 
     public function detail(Request $request, $id)
     {
-        $year = date('Y', strtotime($request->assessment_date));
-        $month = date('m', strtotime($request->assessment_date));
+        if ($request->filled('assessment_date')) {
+            $year = date('Y', strtotime($request->assessment_date));
+            $month = date('m', strtotime($request->assessment_date));
+        } else {
+            $year = date('Y');
+            $month = date('m');
+        }
 
         $employee = Employee::where('id', $id)->first();
-
         $assessments = Assessment::with('performAchievement')
             ->join('perform_achievement', 'perform_achievement.aspect_id', '=', 'assessment_aspect.id')
             ->join('evaluation', 'evaluation.perform_achieve_id', '=', 'perform_achievement.id')

@@ -93,7 +93,7 @@
             <div class="form-row align-items-center">
               <div class="col-md-12 mb-3">
                 <label>Pilih periode 评选期</label>
-                <input class="form-control" name="assessment_date" type="month">
+                <input class="form-control" name="assessment_date" type="month" value="{{ $year . '-' . $month}}">
               </div>
               <div class="col-auto">
                 <a href="{{ route('evaluation.detail', $employee->id) }}" class="btn btn-sm btn-danger">Bersihkan 删除</a>

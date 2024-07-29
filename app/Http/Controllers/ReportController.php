@@ -22,7 +22,31 @@ class ReportController extends Controller
         $year = date('Y', strtotime($date));
         $month = date('m', strtotime($date));
 
-        return view('report.index', compact('year', 'month'));
+        $evaluationHistories = EvaluationHistory::with('employee', 'evaluation')->whereYear('evaluation_date', $year)->whereMonth('evaluation_date', $month)->get();
+
+        $data = [];
+
+        foreach ($evaluationHistories as $eval) {
+            $grades = $eval->evaluation->pluck('grade')->toArray();
+            $totalGrade = array_sum($grades);
+            $contents = $eval->evaluation->pluck('name')->toArray();
+
+            $data[] = [
+                'ID' => $eval->id,
+                'NIK' => $eval->employee->employee_id,
+                'Name' => $eval->employee->name,
+                'Departement' => $eval->employee->departement,
+                'Divisi' => $eval->employee->divisi,
+                'EvaluationDate' => $eval->evaluation_date,
+                'Content' => $contents,
+                'Grades' => $grades,
+                'CreatedAt' => $eval->created_at,
+                'UpdatedAt' => $eval->updated_at,
+                'Total' => $totalGrade,
+            ];
+        }
+
+        return view('report.index', compact('data', 'year', 'month'));
     }
 
     public function downloadReportExcel($year, $month)

@@ -17,3 +17,7 @@
 <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
 
 @stack('select-script')
+
+@stack('disable-button')
+
+
